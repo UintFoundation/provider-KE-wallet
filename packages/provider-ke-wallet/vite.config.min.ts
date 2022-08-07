@@ -8,24 +8,20 @@ export default mergeConfig(
         build: {
             lib: {
                 entry: './src/index.ts',
-                name: 'providerWeb',
+                name: 'providerKEWallet',
             },
             rollupOptions: {
                 output: [
                     {
-                        entryFileNames: pkg.main.replace('dist/', ''),
-                        format: 'cjs',
+                        entryFileNames: pkg.main
+                            .replace('dist/', '')
+                            .replace('.cjs', '.min'),
+                        format: 'umd',
                     },
-                    {
-                        entryFileNames: pkg.module.replace('dist/', ''),
-                        format: 'es',
-                    }
-                ],
-                external: [
-                    ...Object.keys(pkg.dependencies || {})
                 ],
             },
-            minify: false,
+            minify: true,
+            emptyOutDir: false,
         },
     })
 );

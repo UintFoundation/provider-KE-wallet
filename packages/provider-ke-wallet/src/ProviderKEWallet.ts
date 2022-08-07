@@ -14,16 +14,19 @@ import { ITransport } from './interface';
 import { TransportIframe, isSafari, isBrave } from './TransportIframe';
 import { createError } from './createError';
 
-export class ProviderWeb implements Provider {
+export class ProviderKEWallet implements Provider {
     public user: UserData | null = null;
     private readonly _transport: ITransport<HTMLIFrameElement>;
     private readonly _clientUrl: string;
-    private readonly emitter: EventEmitter<AuthEvents> = new EventEmitter<AuthEvents>();
+    private readonly emitter: EventEmitter<AuthEvents> =
+        new EventEmitter<AuthEvents>();
 
     constructor(clientUrl?: string, logs?: boolean) {
         this._clientUrl =
-            (clientUrl || 'https://waves.exchange/signer/') +
-            (import.meta.env.PROD ? `?${ProviderWeb._getCacheClean()}` : '');
+            (clientUrl || 'https://ke.wallet/signer/') +
+            (import.meta.env.PROD
+                ? `?${ProviderKEWallet._getCacheClean()}`
+                : '');
 
         this._transport = new TransportIframe(this._clientUrl, 3);
 

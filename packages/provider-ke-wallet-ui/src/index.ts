@@ -19,7 +19,7 @@ const referrerPathname = referrerURL.pathname?.replace('/', '').length
 analytics.init({
     platform: 'web',
     userType: 'unknown',
-    providerType: 'provider-web',
+    providerType: 'provider-ke-wallet',
     referrer,
     referrerPathname,
 });

@@ -7,7 +7,10 @@ type CreateAccountProps = {
     isIncognito: boolean;
 };
 
-export const CreateAccount: FC<CreateAccountProps> = ({ onCancel, isIncognito }) => {
+export const CreateAccount: FC<CreateAccountProps> = ({
+    onCancel,
+    isIncognito,
+}) => {
     const handleClose = useCallback<
         MouseEventHandler<HTMLButtonElement>
     >(() => {
@@ -17,6 +20,9 @@ export const CreateAccount: FC<CreateAccountProps> = ({ onCancel, isIncognito })
     }, [onCancel]);
 
     return (
-        <CreateAccountComponent onClose={handleClose} isIncognito={isIncognito} />
+        <CreateAccountComponent
+            onClose={handleClose}
+            isIncognito={isIncognito}
+        />
     );
 };

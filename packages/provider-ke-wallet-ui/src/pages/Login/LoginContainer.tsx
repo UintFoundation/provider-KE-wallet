@@ -19,7 +19,12 @@ interface IProps {
     isIncognito: boolean;
 }
 
-export const Login: FC<IProps> = ({ networkByte, onConfirm, onCancel, isIncognito }) => {
+export const Login: FC<IProps> = ({
+    networkByte,
+    onConfirm,
+    onCancel,
+    isIncognito,
+}) => {
     const [errorMessage, setErrorMessage] = useState<string>();
     const [currentUser, setCurrentUser] = useState<StorageUser>();
     const [users, setUsers] = useState<StorageUser[]>();

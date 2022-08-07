@@ -416,7 +416,7 @@ export const SignIssueComponent: FC<Props> = ({
                                     >
                                         IV) You will not set a script on a smart
                                         asset that limits exchange transactions
-                                        on Waves.Exchange by asset quantity;
+                                        on KE.Wallet by asset quantity;
                                     </Text>
                                     <Text
                                         display="block"

@@ -1,6 +1,6 @@
-# ProviderWeb
+# Provider KE Wallet
 ​
-- [ProviderWeb](#providerweb)
+- [ProviderKEWallet](#provider-ke-wallet)
   - [Overview](#overview)
   - [Getting Started](#getting-started)
     - [1. Library installation](#1-library-installation)
@@ -12,7 +12,7 @@
 <a id="overview"></a>
 ## Overview
 ​
-ProviderWeb developed by Waves.Exchange implements a Signature Provider for [Signer](https://github.com/wavesplatform/signer) protocol library. Signer enables easy deploy dApps based on Waves blockchain. Users' encrypted private keys and SEED phrase are stored in waves.exchange domain of the local browser storage. Waves.Exchange and other apps do not have access to the local data as they are stored encrypted.
+ProviderKEWallet is forked from ProviderWeb developed by Waves.Exchange implements a Signature Provider for [Signer](https://github.com/wavesplatform/signer) protocol library. Signer enables easy deploy dApps based on Waves blockchain. Users' encrypted private keys and SEED phrase are stored in ke.wallet domain of the local browser storage. KE.Wallet and other apps do not have access to the local data as they are stored encrypted.
 
 ​
 > For now, signing is implemented for all types of transactions except exchange transactions.
@@ -22,15 +22,15 @@ ProviderWeb developed by Waves.Exchange implements a Signature Provider for [Sig
 ​
 ### 1. Library installation
 ​
-To install Signer and ProviderWeb libraries use
+To install Signer and ProviderKEWallet libraries use
 ​
 ```bash
-npm i @waves/signer @waves.exchange/provider-web
+npm i @waves/signer @ke.wallet/provider-ke-wallet
 ```
 ​
 For Windows, use the following format:
 ```bash
-npm i @waves/signer '@waves.exchange/provider-web'
+npm i @waves/signer '@ke.wallet/provider-ke-wallet'
 ```
 ​
 ​
@@ -42,23 +42,23 @@ Add library initialization to your app.
 ​
    ```js
    import Signer from '@waves/signer';
-   import { ProviderWeb } from '@waves.exchange/provider-web';
+   import { ProviderKEWallet } from '@ke.wallet/provider-ke-wallet';
 
    const signer = new Signer({
      // Specify URL of the node on Testnet
      NODE_URL: 'https://nodes-testnet.wavesnodes.com'
    });
-   signer.setProvider(new ProviderWeb('https://testnet.waves.exchange/signer'));
+   signer.setProvider(new ProviderKEWallet('https://testnet.ke.wallet/signer'));
    ```
 ​
 * For Mainnet:
 ​
    ```js
    import Signer from '@waves/signer';
-   import { ProviderWeb } from '@waves.exchange/provider-web';
+   import { ProviderKEWallet } from '@ke.wallet/provider-ke-wallet';
 
    const signer = new Signer();
-   signer.setProvider(new ProviderWeb());
+   signer.setProvider(new ProviderKEWallet());
    ```
 ​
 ### 3. Basic example
@@ -81,7 +81,7 @@ const [signedTransfer] = await signer
 ## Constructor
 ​
 ```js
-new ProviderWeb(clientOrigin: string, logs: boolean);
+new ProviderKEWallet(clientOrigin: string, logs: boolean);
 ```
 ​
 Creates an object that features user authentication and transaction signing.
@@ -90,13 +90,13 @@ You can use optional parameters for debugging.
 ​
 | Parameter | Default value | Description |
 | :--- | :--- | :--- |
-| clientOrigin | https://waves.exchange/signer | URL of the ProviderWeb instance. For debugging, you can launch the ProviderWeb instance on your server. |
+| clientOrigin | https://ke.wallet/signer | URL of the ProviderKEWallet instance. For debugging, you can launch the ProviderKEWallet instance on your server. |
 | logs | false | Logging level. If `true`, all events are logged |
 ​
 **Usage:**
 ​
 ```js
-var provider = new ProviderWeb(
+var provider = new ProviderKEWallet(
   'http://localhost:8081/iframe-entry',
   true
 );

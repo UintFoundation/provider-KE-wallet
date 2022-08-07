@@ -9,7 +9,7 @@ import {
     Text,
     PlateNote,
 } from '@waves.exchange/react-uikit';
-import React, { FC, MouseEventHandler, } from 'react';
+import React, { FC, MouseEventHandler } from 'react';
 
 export type CreateAccountFormErrors = {
     passwordsDoNotMatch: string | null;
@@ -22,7 +22,10 @@ type CreateAccountComponentProps = {
     isIncognito: boolean;
 };
 
-export const CreateAccountComponent: FC<CreateAccountComponentProps> = ({ onClose , isIncognito}) => {
+export const CreateAccountComponent: FC<CreateAccountComponentProps> = ({
+    onClose,
+    isIncognito,
+}) => {
     return (
         <Box
             bg="main.$800"
@@ -67,13 +70,19 @@ export const CreateAccountComponent: FC<CreateAccountComponentProps> = ({ onClos
             >
                 {isIncognito ? (
                     <>
-                        <PlateNote type="error" color="standard.$0" fontSize="14px" lineHeight="20px">
-                            The authorization in the incognito mode is unavailable.
-                            Please, exit from the incognito mode and try again.
+                        <PlateNote
+                            type="error"
+                            color="standard.$0"
+                            fontSize="14px"
+                            lineHeight="20px"
+                        >
+                            The authorization in the incognito mode is
+                            unavailable. Please, exit from the incognito mode
+                            and try again.
                         </PlateNote>
                         <Box pt="24px" textAlign="center" fontWeight={300}>
                             <Text variant="footnote1" color="basic.$500">
-                                Waves.Exchange
+                                KE Wallet
                             </Text>
                             <Text variant="footnote1" color="basic.$700">
                                 {' '}
@@ -83,18 +92,44 @@ export const CreateAccountComponent: FC<CreateAccountComponentProps> = ({ onClos
                     </>
                 ) : (
                     <>
-                        <Box color="#c5d0de" fontSize="15px" lineHeight="20px" textAlign="center" mb="24px">
-                            You have not imported any seed accounts. Please go to the Waves.exchange
-                            <ExternalLink href="https://waves.exchange/sign-up/software"> Sign Up </ExternalLink>
+                        <Box
+                            color="#c5d0de"
+                            fontSize="15px"
+                            lineHeight="20px"
+                            textAlign="center"
+                            mb="24px"
+                        >
+                            You have not imported any seed accounts. Please go
+                            to the KE.Wallet
+                            <ExternalLink href="https://ke.wallet/sign-up">
+                                {' '}
+                                Sign Up{' '}
+                            </ExternalLink>
                             page and create your account.
                         </Box>
                         <PlateNote type="warning" mb="24px">
-                            <Box color="warning.$500" fontSize="14px" lineHeight="20px" mb="8px">If I can't find my account</Box>
-                            <Box fontSize="13px" lineHeight="16px" color="basic.$300">
-                                This could happen if you cleared your browser cache or started using a new browser or new device. You need to create a password again on the registration page and import your existing account with your seed, private key or Keystore File.
+                            <Box
+                                color="warning.$500"
+                                fontSize="14px"
+                                lineHeight="20px"
+                                mb="8px"
+                            >
+                                If I can't find my account
+                            </Box>
+                            <Box
+                                fontSize="13px"
+                                lineHeight="16px"
+                                color="basic.$300"
+                            >
+                                This could happen if you cleared your browser
+                                cache or started using a new browser or new
+                                device. You need to create a password again on
+                                the registration page and import your existing
+                                account with your seed, private key or Keystore
+                                File.
                             </Box>
                         </PlateNote>
-                        <ExternalLink href="https://waves.exchange/sign-up/software">
+                        <ExternalLink href="https://ke.wallet/sign-up">
                             <Button
                                 variant="primary"
                                 variantSize="medium"

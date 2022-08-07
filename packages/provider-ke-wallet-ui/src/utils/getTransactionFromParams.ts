@@ -5,9 +5,8 @@ import { curry } from 'ramda';
 import { SignerTx } from '@waves/signer';
 
 const fixParams = (networkByte: number, tx: SignerTx): SignerTx => {
-    const updateRecipient: <T extends { recipient: string }>(
-        data: T
-    ) => T = fixRecipient(networkByte);
+    const updateRecipient: <T extends { recipient: string }>(data: T) => T =
+        fixRecipient(networkByte);
 
     switch (tx.type) {
         case NAME_MAP.transfer:

@@ -1,5 +1,5 @@
 {
-  "name": "provider-web",
+  "name": "provider-ke-wallet",
   "private": true,
   "workspaces": [
     "./packages/*"
@@ -9,7 +9,7 @@
   },
   "scripts": {
     "dev": "vite",
-    "lint": "eslint --ext .ts,.tsx ./packages/*/src"
+    "lint": "eslint --fix --ext .ts,.tsx ./packages/*/src"
   },
   "husky": {
     "hooks": {

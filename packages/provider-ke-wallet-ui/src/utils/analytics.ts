@@ -32,7 +32,7 @@ export function runByPath(path, args) {
         return (obj[path] as any).apply(obj, args);
     }
 
-    parts.slice(-1).forEach(function(part) {
+    parts.slice(-1).forEach(function (part) {
         obj = obj[part] as any;
     });
 
@@ -113,7 +113,7 @@ class Analytics {
                     .then(() => {
                         this.apiReadyList.push({
                             type: item.type,
-                            send: function(name, params) {
+                            send: function (name, params) {
                                 runByPath(item.sendMethod, [name, params]);
                             },
                         });
@@ -162,10 +162,10 @@ class Analytics {
         const type = data.target || 'all';
 
         this.apiReadyList
-            .filter(function(item) {
+            .filter(function (item) {
                 return type === 'all' ? true : item.type === type;
             })
-            .forEach(function(item) {
+            .forEach(function (item) {
                 return item.send(data.name, { ...data.params });
             });
     }

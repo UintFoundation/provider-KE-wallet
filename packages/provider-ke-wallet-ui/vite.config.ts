@@ -6,6 +6,6 @@ export default mergeConfig(
     commonConfig,
     defineConfig({
         base: './',
-        plugins: [legacy()]
+        plugins: [legacy()],
     })
 );

@@ -42,25 +42,26 @@ export function getUsers(
                 }
 
                 switch (privateData.userType) {
-                    case 'seed':
-                        const isEncoded = privateData.seed.startsWith('base58:');
-                        const seedBytes = isEncoded ?
-                            libs.crypto.base58Decode(
-                                privateData.seed.replace('base58:', '')
-                            ):
-                            libs.crypto.stringToBytes(privateData.seed)
+                    case 'seed': {
+                        const isEncoded =
+                            privateData.seed.startsWith('base58:');
+                        const seedBytes = isEncoded
+                            ? libs.crypto.base58Decode(
+                                  privateData.seed.replace('base58:', '')
+                              )
+                            : libs.crypto.stringToBytes(privateData.seed);
+
                         acc.push({
                             userType: privateData.userType,
                             address: libs.crypto.address(
                                 seedBytes,
                                 networkByte
                             ),
-                            privateKey: libs.crypto.privateKey(
-                                seedBytes
-                            ),
+                            privateKey: libs.crypto.privateKey(seedBytes),
                         });
                         break;
-                    case 'privateKey':
+                    }
+                    case 'privateKey': {
                         acc.push({
                             userType: privateData.userType,
                             privateKey: privateData.privateKey,
@@ -70,6 +71,7 @@ export function getUsers(
                             ),
                         });
                         break;
+                    }
                     default:
                         break;
                 }
