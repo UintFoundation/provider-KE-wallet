@@ -5,6 +5,7 @@
     "./packages/*"
   ],
   "engines": {
+    "node": ">=15",
     "npm": ">=7.0.0"
   },
   "scripts": {
