@@ -4,7 +4,7 @@ import {
 } from '@waves/node-api-js/es/api-node/addresses';
 import { fetchByAddress } from '@waves/node-api-js/es/api-node/alias';
 import { libs } from '@waves/waves-transactions';
-import { IUser } from '../interface';
+import { IPrivateKeyUserData, IUser } from '../interface';
 import { IPrivateSeedUserData } from '../interface';
 import { TCatchable } from '../utils/catchable';
 import { getUserId } from '../utils/getUserId';
@@ -43,8 +43,9 @@ export function getUsers(
 
                 switch (privateData.userType) {
                     case 'seed': {
-                        const isEncoded =
-                            privateData.seed.startsWith('base58:');
+                        const isEncoded = privateData.seed.startsWith(
+                            'base58:'
+                        );
                         const seedBytes = isEncoded
                             ? libs.crypto.base58Decode(
                                   privateData.seed.replace('base58:', '')
@@ -91,6 +92,43 @@ export function addSeedUser(
         seed,
         publicKey: libs.crypto.publicKey(seed),
         userType: 'seed',
+    };
+
+    const data = storage.getPrivateData(password);
+
+    if (!data.ok) {
+        return data;
+    }
+
+    const userId = getUserId(networkByte, user.publicKey);
+    const users = {
+        ...data.resolveData,
+        [userId]: user,
+    };
+    const name = 'Waves Account';
+    const usersData = storage.get('multiAccountUsers');
+
+    usersData[userId] = usersData[userId] ?? { name };
+
+    storage.setPrivateData(users, password);
+    storage.set('multiAccountUsers', usersData);
+
+    return {
+        ...data,
+        resolveData: user,
+    };
+}
+
+export function addPrivateKeyUser(
+    privateKey: string,
+    password: string,
+    networkByte: number
+): TCatchable<IPrivateKeyUserData> {
+    const user: IPrivateKeyUserData = {
+        networkByte,
+        privateKey,
+        publicKey: libs.crypto.publicKey(privateKey),
+        userType: 'privateKey',
     };
 
     const data = storage.getPrivateData(password);
