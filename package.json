@@ -10,7 +10,10 @@
   },
   "scripts": {
     "dev": "vite",
-    "lint": "eslint --ext .ts,.tsx ./packages/*/src"
+    "lint": "eslint --ext .ts,.tsx ./packages/*/src",
+    "prebuild": "node ./node_modules/esbuild/install.js",
+    "build": "npm run build -w packages/provider-ke-wallet-ui",
+    "postbuild": "cp -r ./packages/provider-ke-wallet-ui/dist ./"
   },
   "husky": {
     "hooks": {
